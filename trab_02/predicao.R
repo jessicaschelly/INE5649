@@ -4,7 +4,7 @@ library(DataExplorer)
 library(visreg)
 
 tamanho_da_amostra <- 1000
-Base <- read.csv('/Users/jessicasouza/Downloads/salt.csv')
+Base <- fread(input = paste0("data.csv"), data.table = FALSE, dec=".")
 Base <- Base[0:tamanho_da_amostra, c('T_degC','Salnty','Depthm')]
 
 # Visualizar Dataframe

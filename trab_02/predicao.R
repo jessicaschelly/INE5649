@@ -79,6 +79,8 @@ analisador(y=Base$Depthm, x=Base$T_degC)
 
 ml <- lm(T_degC ~ Salnty, data=Base)
 
+# TRABALHO 2  
+
 ## Regressão multipla
 
 model <- lm(T_degC ~ Salnty + Depthm, data=Base)
@@ -128,6 +130,28 @@ ggplot(data = model) +
   theme_minimal()
 
 summary(model)
+
+
+# Modelo de dispersão Temperatura x Salinidade
+g1 <- ggplot(data=model, aes(x=Base$T_deg, y=Base$Salnty))+
+  geom_point() +
+  labs(x = 'Temperatura', y = 'Salinidade') +
+  theme_minimal()
+g1 + geom_smooth(method = 'lm', se = F)
+
+# Modelo de dispersão Temperatura x Profundidade
+g1 <- ggplot(data=model, aes(x=Base$T_deg, y=Base$Depthm))+
+  geom_point() +
+  labs(x = 'Temperatura', y = 'Profundidade') +
+  theme_minimal()
+g1 + geom_smooth(method = 'lm', se = F)
+
+# Correlação
+print("Profundidade")
+cor(Base$Depthm, Base$T_deg)
+
+print("Salinidade")
+cor(Base$Salnty, Base$T_deg)
 
 # Intervalo de confiança e de predição para os dados da base
 IC1 <- predict(model, interval="confidence",level = 0.95)
